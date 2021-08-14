@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import currencyFormatter from "currency-formatter";
-import { useState } from "react";
 
 const Content = ({ products }) => {
-  const [quantity, setQuantity] = useState(0);
-
-  const handleQuantityChange = (event) => {
-    setQuantity(event.target.value);
-  };
   return (
     <div>
       <table style={{ width: "100%" }}>
@@ -85,11 +79,6 @@ const Image = styled.img`
 const Details = styled.div`
   text-align: left;
   margin-left: 16px;
-`;
-
-const Input = styled.input`
-  width: 30px;
-  height: 30px;
 `;
 
 const Total = styled.tr``;
