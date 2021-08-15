@@ -32,35 +32,42 @@ const Wrapper = styled.div`
     #6a8cff,
     #fc00ff
   );
-  height: 600px;
+  height: 800px;
   width: 100%;
+  position: relative;
 `;
 
 const Banner = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-start;
   padding: 16px;
   background: black;
-  border-radius: 12px;
-  border: 20px solid white;
-  height: 70%;
+  border-radius: 50px;
+  border: 30px solid white;
+  height: 100%;
   width: 100%;
   font-family: "Source Code Pro";
+  transform: rotate(-25deg);
+  margin-top: -300px;
+  position: absolute;
+  left: 0px;
+  top: -160px;
 `;
 
 const Title = styled.p`
   color: #00ff00;
   text-transform: uppercase;
-  font-size: 36px;
+  font-size: 48px;
   text-align: left;
-  margin: 0 0 0 56px;
+  margin: 0 0 0 144px;
 `;
 
 const Date = styled.p`
   writing-mode: vertical-rl;
   text-orientation: mixed;
   color: #00ff00;
+  margin: 0 0 42px 0;
 `;

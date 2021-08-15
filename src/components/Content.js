@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import currencyFormatter from "currency-formatter";
 
-const Content = ({ products }) => {
+const Content = ({ products, addItem, decreaseItem }) => {
+  const priceArray = products.map(
+    (product) => product.quantity * product.product.price
+  );
+
   return (
     <div>
       <table style={{ width: "100%" }}>
@@ -30,7 +34,20 @@ const Content = ({ products }) => {
                 </Details>
               </ProductCell>
               <QuantityCell>
-                <p>{item.quantity}</p>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <p style={{ textAlign: "center", fontSize: "20px" }}>
+                    {item.quantity}
+                  </p>
+                  <div style={{ margin: " 0 auto" }}>
+                    <Button onClick={() => addItem(item)}> +</Button>
+                    <Button onClick={() => decreaseItem(item)}> -</Button>
+                  </div>
+                </div>
               </QuantityCell>
               <PriceCell>
                 {currencyFormatter.format(item.quantity * item.product.price, {
@@ -39,7 +56,22 @@ const Content = ({ products }) => {
               </PriceCell>
             </Row>
           ))}
-          <Total>p</Total>
+          <Total>
+            <td
+              colSpan="2"
+              style={{ textAlign: "right", paddingRight: "30px" }}
+            >
+              TOTAL
+            </td>
+            <td>
+              {currencyFormatter.format(
+                priceArray.reduce((acc, curr) => acc + curr, 0),
+                {
+                  code: "IDR",
+                }
+              )}
+            </td>
+          </Total>
         </tbody>
       </table>
     </div>
@@ -65,6 +97,7 @@ const ProductCell = styled.td`
 
 const QuantityCell = styled.td`
   width: 15%;
+  margin: 0 auto;
 `;
 
 const PriceCell = styled.td`
@@ -81,4 +114,16 @@ const Details = styled.div`
   margin-left: 16px;
 `;
 
-const Total = styled.tr``;
+const Total = styled.tr`
+  background: black;
+  color: white;
+  font-size: 24px;
+  width: 100%;
+`;
+
+const Button = styled.button`
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  margin: 0 auto;
+`;

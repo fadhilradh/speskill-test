@@ -1,4 +1,4 @@
-export function getAllData() {
+export function getAllData(callback) {
   const myHeaders = new Headers({
     "Content-Type": "application/json",
     Authorization: "Bearer o7Ytbt9XQLI3PgtebJfKSXKEf0XHU74Y",
@@ -16,7 +16,12 @@ export function getAllData() {
       }
     })
     .then((response) => {
-      return response;
+      callback(
+        response.map((product) => ({
+          ...product,
+          quantity: 0,
+        }))
+      );
     })
     .catch((error) => {
       console.error(error);
